@@ -1,0 +1,17 @@
+package net.frostbite.mod.items;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.Item.ToolMaterial;
+
+public class ItemKopesh extends ItemSword {
+
+	public ItemKopesh(ToolMaterial p_i45356_1_) {
+		super(p_i45356_1_);
+		
+		setCreativeTab(CreativeTabs.tabCombat);
+		setUnlocalizedName("kopesh");
+	
+	}
+
+}

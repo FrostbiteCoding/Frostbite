@@ -1,0 +1,7 @@
+package net.frostbite.mod.items;
+
+import net.minecraft.item.Item;
+
+public class ItemBucketTerraLava extends Item {
+
+}

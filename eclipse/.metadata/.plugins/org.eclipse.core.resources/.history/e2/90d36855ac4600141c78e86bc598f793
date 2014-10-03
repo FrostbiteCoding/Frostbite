@@ -1,0 +1,5 @@
+package net.frostbite.mod.TileEntity;
+
+public class TileEntityAlabasterOven {
+
+}

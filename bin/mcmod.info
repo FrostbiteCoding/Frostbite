@@ -1,0 +1,16 @@
+[
+{
+  "modid": "Frostbite",
+  "name": "Project Frostbite",
+  "description"I'm just setting up a template for a mod ",
+  "version": "Alpha 1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Frostbite"],
+  "credits": "Mr. Doctor Professor Frostbite",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

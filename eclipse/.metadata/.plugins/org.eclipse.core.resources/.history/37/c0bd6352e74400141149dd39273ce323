@@ -1,0 +1,72 @@
+package net.frostbite.mod.entity;
+
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAICreeperSwell;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.world.World;
+
+public class EntityRunner extends EntityMob {
+
+	public EntityRunner(World world) {
+		super(world);
+		this.tasks.addTask(0, new EntityAIWander(this, 0.8F));
+		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0F, false));
+		this.tasks.addTask(7, new EntityAILookIdle(this));
+		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8,0F));
+
+		
+		
+	}
+	
+	public boolean isAIEnabled(){
+		return true;
+	}
+	
+	@Override
+	protected void applyEntityAttributes() {
+	super.applyEntityAttributes();
+	this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
+	this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+	this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0D);
+	}
+	
+	
+	@Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+        
+        // Fire Sound:
+        //if(this.rand.nextInt(24) == 0)
+            //this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F);
+        
+        // Particles:
+        if(this.worldObj.isRemote)
+	        for(int i = 0; i < 2; ++i) {
+	            this.worldObj.spawnParticle("largesmoke", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("flame", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	        }
+    }
+    
+    
+    
+	
+	protected Item getDropItem(){
+		return Items.iron_boots;
+	}
+	
+}

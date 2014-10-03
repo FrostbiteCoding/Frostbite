@@ -1,0 +1,28 @@
+package net.frostbite.mod.crafting;
+
+import net.frostbite.mod.Frostbite;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+
+public class IngotMasherRecipes {
+
+	public IngotMasherRecipes() {
+		
+	}
+	
+	public static ItemStack getMashingResult(Item item, Item item2) {
+		return getOutput(item, item2);
+	}
+	
+	public static ItemStack getOutput(Item item, Item item2) {
+		//Recipe One
+		if (item == Frostbite.itemFrostIngot && item2 == Items.iron_ingot || item == Items.iron_ingot && item2 == Frostbite.itemFrostIngot) {
+			return new ItemStack(Frostbite.itemFrostSword, 4);
+		}
+		
+		return null;
+	}
+	
+}
